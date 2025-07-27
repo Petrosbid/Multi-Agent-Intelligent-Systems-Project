@@ -1,237 +1,131 @@
-# Multi-Agent-Intelligent-Systems-Project
-Multi-agent gridworld project implementing Simple Reflex, Model-Based Reflex, and Goal-Based Agents. Features A* pathfinding, communication, and performance analysis in a configurable environment with visualization. Built in Python for AI course.
+# Multi-Agent Intelligent Systems Project
 
-Overview
-This project implements a multi-agent gridworld environment and three distinct agent architectures—Simple Reflex, Model-Based Reflex, and Goal-Based Agents—as part of the Artificial Intelligence course assignment. The project demonstrates the application of Russell and Norvig's agent architecture framework in a controlled, partially observable gridworld environment. Agents navigate to collect resources, deliver them to goal zones, avoid hazards, and manage energy constraints while optionally communicating with other agents.
-The implementation is written in Python and includes a testing framework for performance evaluation across various scenarios, with visualization capabilities using Pygame and analytical tools using Matplotlib, Seaborn, and Pandas. This README provides instructions for setting up, running, and analyzing the project, along with an overview of its structure and functionality.
+A complete AI project implementing and analyzing **three intelligent agent architectures** based on Russell & Norvig's taxonomy, using a **multi-agent gridworld simulation environment**. Developed in Python, this project demonstrates agent behavior ranging from simple reflex to sophisticated goal-based planning with A\*.
 
-Table of Contents
+---
 
-Features
-Prerequisites
-Installation
-Usage
-Running Individual Agent Tests
-Running Full Comparison
-Visualization
+## 📃 Overview
 
+This project provides hands-on implementation of:
 
-Project Structure
-Agent Architectures
-Simple Reflex Agent
-Model-Based Reflex Agent
-Goal-Based Agent
+* Simple Reflex Agent
+* Model-Based Reflex Agent
+* Goal-Based Agent with A\* Planning
 
+Each agent operates in a 2D grid environment and is evaluated on efficiency, adaptability, and communication under various scenarios.
 
-Environment Description
-Performance Metrics
-Experimental Scenarios
-Dependencies
-Contributing
-License
-Acknowledgements
+---
 
+## 🤖 Features
 
-Features
+* Fully modular Python implementation
+* GridWorld environment with obstacles, hazards, resources, and goals
+* Partial observability and limited agent perception
+* Inter-agent communication (broadcast-based)
+* Pygame visualization of agent behavior
+* Built-in experiment and benchmarking framework
 
-Three Agent Architectures: Implementation of Simple Reflex, Model-Based Reflex, and Goal-Based agents with distinct decision-making strategies.
-GridWorld Environment: A configurable 2D grid with walls, resources, goals, hazards, and partial observability (5x5 perception range).
-A Pathfinding: Goal-Based Agent uses A algorithm for optimal navigation, considering obstacles and hazards.
-Communication System: Model-Based and Goal-Based agents support inter-agent communication to share world knowledge.
-Visualization: Pygame-based visualization for real-time observation of agent behavior.
-Performance Analysis: Comprehensive metrics (success rate, efficiency, energy usage, etc.) with statistical analysis and visualizations using Matplotlib and Seaborn.
-Testing Framework: Automated testing across multiple scenarios with logging and result aggregation.
-Modular Code: Well-structured, maintainable codebase with clear separation of concerns and robust error handling.
+---
 
+## 📊 Agent Architectures
 
-Prerequisites
+### 1. Simple Reflex Agent
 
-Python: Version 3.8 or higher
-Operating System: Windows, macOS, or Linux
-Dependencies: See Dependencies for required Python packages
+* Reacts instantly to local stimuli using prioritized condition-action rules
+* No memory or internal model
+* Best for simple environments
 
+### 2. Model-Based Reflex Agent
 
-Installation
+* Maintains internal memory of walls, hazards, goals, and resources
+* Shares knowledge with nearby agents
+* Performs intelligent exploration using a frontier-based approach
 
-Clone the Repository:
-git clone https://github.com/your-username/multi-agent-intelligent-systems.git
-cd multi-agent-intelligent-systems
+### 3. Goal-Based Agent
 
+* Uses A\* search algorithm for planning
+* Selects goals based on utility (hazard avoidance, collection, delivery, exploration)
+* Continuously replans in dynamic and multi-agent settings
 
-Create a Virtual Environment (recommended):
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+---
 
+## 🌐 SEO-Optimized Keywords
 
-Install Dependencies:
-pip install -r requirements.txt
+> Artificial Intelligence Agents, Reflex vs Goal-Based Agents, Multi-Agent Systems, A\* Pathfinding in Python, AI Agent Communication, AI Agent Planning, GridWorld AI Simulation, Intelligent Agent Architectures
 
+---
 
-Verify Installation:Run the main script to ensure all dependencies are correctly installed:
-python main.py
+## 📆 Experimental Scenarios
 
+Run experiments across diverse scenarios:
 
+| Scenario               | Grid Size | Agents | Resources | Hazards | Max Steps |
+| ---------------------- | --------- | ------ | --------- | ------- | --------- |
+| Simple Collection      | 8x8       | 2      | 4         | 0       | 100       |
+| Maze Navigation        | 10x10     | 1      | 4         | 3       | 150       |
+| Competitive Collection | 12x12     | 3      | 3         | 2       | 200       |
+| Dense Hazards          | 8x8       | 2      | 2         | 6       | 120       |
+| Sparse Exploration     | 15x15     | 3      | 5         | 1       | 300       |
+| Hazard-Blocked Goals   | 10x10     | 2      | 3         | 5       | 200       |
 
+Performance metrics include:
 
-Usage
-The project provides a flexible testing framework to evaluate agent performance in various scenarios. You can run individual agent tests with or without visualization or perform a full comparison across all agent types and scenarios.
-Running Individual Agent Tests
-To test a single agent type in a specific scenario with visualization:
-python main.py
+* ✅ Success Rate
+* ⚡️ Energy Efficiency
+* ⏱ Task Completion Time
+* ⚖ Efficiency Score
+* ❌ Collision Count
+* 🔍 Exploration Coverage
 
-This runs the default test sequence, evaluating SimpleReflexAgent, ModelBasedReflexAgent, and GoalBasedAgent in the "competitive_collection" scenario with Pygame visualization.
-To test a specific agent in a specific scenario without visualization:
-from main import ProjectTester
+---
 
-tester = ProjectTester()
-tester.test_single_agent(SimpleReflexAgent, config_name="simple_collection", visualize=False)
+## 🔧 Installation
 
-Available scenarios: simple_collection, maze_navigation, competitive_collection, dense_hazards, sparse_exploration, hazard_blocking_goals.
-Running Full Comparison
-To compare all agent types across all scenarios (headless mode for speed):
-from main import ProjectTester
+```bash
+# Clone repository
+$ git clone https://github.com/your-username/multi-agent-simulation
+$ cd multi-agent-simulation
 
-tester = ProjectTester()
-tester.run_comparison()
+# Install requirements
+$ pip install -r requirements.txt
+```
 
-This generates performance metrics and visualizations (bar plots) for each metric across scenarios and agent types.
-Visualization
-The project includes a Pygame-based visualization to observe agent behavior in real-time:
+---
 
-Grid: Displays cells (empty, walls, goals, resources, hazards) with distinct colors.
-Agents: Represented as colored triangles with energy levels displayed.
-Metrics: Real-time display of step count, resources collected, and average energy.
+## ▶️ Usage
 
-To enable visualization, ensure visualize=True when calling test_single_agent.
+### Test individual agent:
 
-Project Structure
-multi-agent-intelligent-systems/
-├── logs/                    # Log files for each test run
-├── main.py                  # Main project file with agent implementations and testing framework
-├── requirements.txt         # Python dependencies
-├── README.md                # Project documentation
+```bash
+$ python main.py
+```
 
+You can toggle visualization or run comparisons inside `main()`.
 
-logs/: Stores JSON log files for each test run, including metrics and agent actions.
-main.py: Contains the GridWorld environment, agent implementations (SimpleReflexAgent, ModelBasedReflexAgent, GoalBasedAgent), and the ProjectTester class for experimentation.
-requirements.txt: Lists required Python packages.
-README.md: This file, providing project documentation.
+### Run all agent comparisons:
 
+Uncomment `tester.run_comparison()` in `main()` to test all agents across all scenarios.
 
-Agent Architectures
-Simple Reflex Agent
+---
 
-Description: A reactive agent using condition-action rules with no internal state.
-Behavior:
-Avoid hazards (move to safe adjacent cell).
-Pick up resources if present.
-Move toward goals if carrying a resource.
-Move toward visible resources if not carrying.
-Explore randomly otherwise.
+## 🎓 Learning Outcomes
 
+* Understand agent types and the PEAS framework
+* Apply planning algorithms like A\*
+* Analyze trade-offs between reactivity and deliberation
+* Explore inter-agent communication and distributed intelligence
 
-Strengths: Fast decision-making, low computational overhead.
-Weaknesses: Limited to immediate perceptions, prone to local optima.
+---
 
-Model-Based Reflex Agent
+## 🔍 Citation
 
-Description: Maintains an internal world model (walls, resources, goals, hazards, visited positions) and supports inter-agent communication.
-Behavior:
-Avoid hazards using spatial memory.
-Pick up resources opportunistically.
-Navigate to known goals when carrying resources.
-Move toward known resources.
-Explore unvisited areas systematically.
+This project is based on:
 
+> Russell, S. & Norvig, P. (2020). *Artificial Intelligence: A Modern Approach* (4th ed.)
 
-Strengths: Improved navigation through memory, effective in partially observable environments.
-Weaknesses: Higher computational overhead due to model maintenance.
 
-Goal-Based Agent
+---
 
-Description: Uses A* pathfinding and utility-based goal selection for deliberative planning, with plan validation and adaptation.
-Behavior:
-Avoid hazards reactively.
-Pick up resources opportunistically.
-Execute or replan paths to goals/resources using A*.
-Select goals based on utility (distance-adjusted).
-Explore unvisited areas if no known targets.
+## 🌍 License
 
-
-Strengths: Optimal paths, adaptive to dynamic changes, effective in complex scenarios.
-Weaknesses: Highest computational overhead due to planning.
-
-
-Environment Description
-
-Grid: Configurable 2D grid (e.g., 8x8, 10x10, 12x12).
-Cell Types:
-Empty: Navigable space.
-Walls: Impassable obstacles.
-Goals: Zones for resource delivery.
-Resources: Collectible items.
-Hazards: Energy-depleting areas.
-
-
-Agent Properties:
-Start with 100 energy points.
-Consume energy per action (e.g., 1.0 for movement, 0.5 for pickup/drop, 4.0 extra on hazards).
-Perceive a 5x5 neighborhood.
-Can communicate knowledge (walls, resources, goals, hazards).
-
-
-Objective: Collect resources and deliver them to goals while managing energy and avoiding hazards.
-
-
-Performance Metrics
-The testing framework collects the following metrics:
-
-Total Resources Collected: Number of resources delivered to goals.
-Success Rate (%): Percentage of initial resources collected.
-Average Energy Remaining: Mean energy across agents at the end.
-Total Steps: Number of simulation steps taken.
-Collision Count: Number of attempted invalid moves.
-Exploration Coverage (%): Percentage of navigable cells visited.
-Average Task Completion Time: Mean steps to deliver a resource.
-Energy Efficiency: Resources collected per unit of energy.
-Overall Efficiency Score: Composite score balancing resources, time, energy, and collisions.
-
-
-Experimental Scenarios
-The project includes six predefined scenarios to test agent performance:
-
-Simple Collection: 8x8 grid, 2 agents, 4 resources, 2 goals, no hazards, 100 steps.
-Maze Navigation: 10x10 grid, 1 agent, 4 resources, 2 goals, 3 hazards, 150 steps.
-Competitive Collection: 12x12 grid, 3 agents, 3 resources, 2 goals, 2 hazards, 200 steps.
-Dense Hazards: 8x8 grid, 2 agents, 2 resources, 2 goals, 6 hazards, 120 steps.
-Sparse Exploration: 15x15 grid, 3 agents, 5 resources, 3 goals, 1 hazard, 300 steps.
-Hazard Blocking Goals: 10x10 grid, 2 agents, 3 resources, 2 goals, 5 hazards, 200 steps.
-
-Each scenario is run for 5 trials to compute means and standard deviations.
-
-Dependencies
-The project requires the following Python packages, listed in requirements.txt:
-numpy>=1.21.0
-matplotlib>=3.4.0
-pandas>=1.3.0
-seaborn>=0.11.0
-pygame>=2.0.0
-
-Install them using:
-pip install -r requirements.txt
-
-
-Contributing
-This project is an individual academic assignment, and direct contributions are not permitted as per the academic integrity policy. However, you may discuss general concepts and debugging strategies with peers, ensuring all code remains original. For suggestions or issues, please contact the project author or course instructor.
-
-License
-This project is for educational purposes only and is not distributed under an open-source license. All code is proprietary to the project author and may not be shared or reused without permission.
-
-Acknowledgements
-
-Instructor: Dr. Mahdi Eftekhari for guidance and project design.
-References: Russell, S. J., & Norvig, P. (2020). Artificial Intelligence: A Modern Approach (4th ed.).
-Tools: Python, NumPy, Matplotlib, Seaborn, Pygame for implementation and visualization.
-
-
-Built with :heart: for the Artificial Intelligence course, 2025.
+MIT License - See `LICENSE` file for details.
